@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StoryBranch : MonoBehaviour
 {
     public GameObject MC;
     Animator animator;
+    public Slider suspicionSlider;
+    public Slider producionSlider;
 
     private void Start()
     {

@@ -22,6 +22,11 @@ public class SceneController : MonoBehaviour
         story.Add("plus boss is not happy with my work long time ago");
         story.Add("I really need to get to work on time");
         story.Add("which road should I pick");
+        story.Add("Instructions:");
+        story.Add("'Left bar is your production bar'");
+        story.Add("'You want it to be higher so boss wont fire you'");
+        story.Add("'Right bar is your suspicion bar'");
+        story.Add("'You want to keep it low so others wont find your super power'");
 
     }
 
@@ -30,7 +35,7 @@ public class SceneController : MonoBehaviour
     {
         try
         {
-            if (nextLine == 6)
+            if (nextLine == 12)
             {
                 storyUI.SetActive(false);
                 optionUI.SetActive(true);
