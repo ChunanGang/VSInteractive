@@ -55,8 +55,8 @@ public class Scene2Controller : MonoBehaviour
 
     private void GenerateStoryBlock1()
     {
-        story.Add("White House, before press conference.");
-        story.Add("There must be some juciy news somewhere.");
+        story.Add("White House. Before press conference.");
+        story.Add("There must be some juicy news somewhere.");
     }
 
 
@@ -69,7 +69,7 @@ public class Scene2Controller : MonoBehaviour
         storyUI.SetActive(false);
         SetUpFirstChoice();
         optionUI.SetActive(true);
-
+        statusUI.SetActive(true);
     }
 
 
