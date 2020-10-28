@@ -35,7 +35,7 @@ public class SceneController : MonoBehaviour
     {
         try
         {
-            if (nextLine == 12)
+            if (nextLine == 11)
             {
                 storyUI.SetActive(false);
                 optionUI.SetActive(true);
