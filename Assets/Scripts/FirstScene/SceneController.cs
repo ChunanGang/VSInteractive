@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class SceneController : MonoBehaviour
 {
 
+    public Animator anim;
     public GameObject storyUI;
     public GameObject optionUI;
     public Text storyText;
     private bool secondScene;
 
     private int nextLine = 0;
+    private bool hasPlayed;
     private List<string> story1 = new List<string>();
     private List<string> story2 = new List<string>();
 
@@ -32,7 +34,8 @@ public class SceneController : MonoBehaviour
         story1.Add("'You want to keep it low so others wont find your super power'");
         story1.Add("");
         story1.Add("");
-        story1.Add("Oh shoot nearly forget to buy the gift boss asked yesterday");
+        story1.Add("");
+        story1.Add("Oh shoot nearly forget to buy the gift boss asked yesterday. Need to buy it now.");
         story1.Add("I am running out of time... ");
 
     }
@@ -43,11 +46,16 @@ public class SceneController : MonoBehaviour
         secondScene = ToShopping.secondScene;
         try
         {
-            if (secondScene)
-            {
+            if (secondScene && !hasPlayed)
+            {                
                 storyUI.SetActive(true);
                 optionUI.SetActive(false);
-                nextLine = 13;
+                //storyText.text = "Oh shoot nearly forget to buy the gift boss asked yesterday";
+                nextLine = 14;
+                Debug.Log("Play");
+                // PlayAnimation();
+                // anim.enabled = false;
+                hasPlayed = true;
             }
             if (nextLine == 12)
             {
@@ -65,5 +73,11 @@ public class SceneController : MonoBehaviour
         catch 
         {
         }
+    }
+
+    void PlayAnimation()
+    {
+        anim.enabled = true;
+        anim.Play("WalkToShop");
     }
 }

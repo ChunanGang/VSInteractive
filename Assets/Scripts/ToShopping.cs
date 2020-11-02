@@ -25,13 +25,13 @@ public class ToShopping : MonoBehaviour
         {
             secondScene = true;
             StartCoroutine(LoadNextScene());
-            SceneManager.LoadScene("ShoppingScene");
+            
         }
     }
 
     public IEnumerator LoadNextScene()
     {
         yield return new WaitForSeconds(5f);
-
+        SceneManager.LoadScene("ShoppingScene");
     }
 }

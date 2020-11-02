@@ -29,8 +29,6 @@ public class StoryBranch : MonoBehaviour
     private void Update()
     {
         secondScene = ToShopping.secondScene;
-        suspicionSlider.value += (suspicionBarIncrement * Time.deltaTime);
-        producionSlider.value += (producctionBarIncrement * Time.deltaTime);
         if (!secondScene)
         {
             if (walking)
@@ -41,9 +39,13 @@ public class StoryBranch : MonoBehaviour
             {
                 cc.Move(new Vector3(0, 0, -runSpeed * Time.deltaTime));
             }
+            suspicionSlider.value += (suspicionBarIncrement * Time.deltaTime);
+            producionSlider.value += (producctionBarIncrement * Time.deltaTime);
         }
         else
         {
+            Debug.Log("true");
+            animator.SetBool("toShop", true);
             animator.SetBool("isWalking", false);
             animator.SetBool("isRunning", false);
         }
