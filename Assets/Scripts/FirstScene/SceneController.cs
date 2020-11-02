@@ -9,46 +9,61 @@ public class SceneController : MonoBehaviour
     public GameObject storyUI;
     public GameObject optionUI;
     public Text storyText;
+    private bool secondScene;
 
     private int nextLine = 0;
-    private List<string> story = new List<string>();
+    private List<string> story1 = new List<string>();
+    private List<string> story2 = new List<string>();
+
 
 
     private void Start()
     {
-        story.Add("Man I forgot to set up an alarm last night");
-        story.Add("Now I am going to be late for work");
-        story.Add("Boss gonna be mad");
-        story.Add("plus boss is not happy with my work long time ago");
-        story.Add("I really need to get to work on time");
-        story.Add("which road should I pick");
-        story.Add("Instructions:");
-        story.Add("'Left bar is your production bar'");
-        story.Add("'You want it to be higher so boss wont fire you'");
-        story.Add("'Right bar is your suspicion bar'");
-        story.Add("'You want to keep it low so others wont find your super power'");
+        story1.Add("Man I forgot to set up an alarm last night");
+        story1.Add("Now I am going to be late for work");
+        story1.Add("Boss gonna be mad");
+        story1.Add("plus boss is not happy with my work long time ago");
+        story1.Add("I really need to get to work on time");
+        story1.Add("which road should I pick");
+        story1.Add("Instructions:");
+        story1.Add("'Left bar is your production bar'");
+        story1.Add("'You want it to be higher so boss wont fire you'");
+        story1.Add("'Right bar is your suspicion bar'");
+        story1.Add("'You want to keep it low so others wont find your super power'");
+        story1.Add("");
+        story1.Add("");
+        story1.Add("Oh shoot nearly forget to buy the gift boss asked yesterday");
+        story1.Add("I am running out of time... ");
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        secondScene = ToShopping.secondScene;
         try
         {
-            if (nextLine == 11)
+            if (secondScene)
+            {
+                storyUI.SetActive(true);
+                optionUI.SetActive(false);
+                nextLine = 13;
+            }
+            if (nextLine == 12)
             {
                 storyUI.SetActive(false);
                 optionUI.SetActive(true);
+                // nextLine = 0;
             }
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
             {
-                storyText.text = story[nextLine].ToString();
+                Debug.Log(nextLine);
                 nextLine += 1;
             }
+            storyText.text = story1[nextLine].ToString();
         }
         catch 
         {
         }
-
     }
 }

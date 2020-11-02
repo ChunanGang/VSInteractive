@@ -11,12 +11,14 @@ public class StoryBranch : MonoBehaviour
     public Slider suspicionSlider;
     public Slider producionSlider;
 
-    private float runSpeed = 2f;
+    private float runSpeed = 12f;
     private float walkSpeed = 1f;
     private float producctionBarIncrement = 0f;
     private float suspicionBarIncrement = 0f;
     private bool walking;
     private bool running;
+
+    private bool secondScene;
 
     private void Start()
     {
@@ -26,15 +28,24 @@ public class StoryBranch : MonoBehaviour
 
     private void Update()
     {
+        secondScene = ToShopping.secondScene;
         suspicionSlider.value += (suspicionBarIncrement * Time.deltaTime);
         producionSlider.value += (producctionBarIncrement * Time.deltaTime);
-        if (walking)
+        if (!secondScene)
         {
-            cc.Move(new Vector3(0, 0, walkSpeed * Time.deltaTime));
+            if (walking)
+            {
+                cc.Move(new Vector3(0, 0, -walkSpeed * Time.deltaTime));
+            }
+            if (running)
+            {
+                cc.Move(new Vector3(0, 0, -runSpeed * Time.deltaTime));
+            }
         }
-        if (running)
+        else
         {
-            cc.Move(new Vector3(0, 0, runSpeed * Time.deltaTime));
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
         }
     }
 
@@ -54,8 +65,8 @@ public class StoryBranch : MonoBehaviour
         animator.SetBool("isWalking", false);
         running = true;
         walking = false;
-        suspicionBarIncrement = 0.1f;
-        producctionBarIncrement = 0.06f;
+        suspicionBarIncrement = 0.18f;
+        producctionBarIncrement = 0.08f;
     }
 
 
