@@ -8,9 +8,11 @@ public enum StoryState
     SneakingInEarly,
     TakingFirstAlienPhoto,
     NotSneakingEarly,
+    DialogBeforeSecondChoice,
     SecondChoice,
     NotStay,
-    Stay
+    Stay,
+    End
 }
 public class Scene2Controller : MonoBehaviour
 {
@@ -38,6 +40,11 @@ public class Scene2Controller : MonoBehaviour
 
     [Header("SneakingStaff")]
     public GameObject flashLight;
+    public GameObject flashLight2;
+
+    [Header("StayingDialog")]
+    public GameObject dialogBackground;
+    public GameObject workers;
 
     private int nextLine = 0;
     private List<string> story = new List<string>();
@@ -69,11 +76,134 @@ public class Scene2Controller : MonoBehaviour
 
                 StartCoroutine(SetupSneakingState());
                 break;
+
+
+            case StoryState.NotSneakingEarly:
+
+                optionUI.SetActive(false);
+                statusUI.SetActive(false);
+                //storyUI.SetActive(true);
+                //storyText.text = "......";
+                storyUI.SetActive(false);
+                _currState = StoryState.DialogBeforeSecondChoice;
+                StartCoroutine(StayAndListenDialog());
+                break;
+
+
+            case StoryState.NotStay:
+
+                _currState = StoryState.End;
+
+
+                // Go to Next Scene
+
+                break;
+
+
+            case StoryState.Stay:
+                _currState = StoryState.End;
+                StartCoroutine(LastSceneToSeeAlien());
+                break;
         }
             
 
 
     }
+
+
+    IEnumerator LastSceneToSeeAlien()
+    {
+        StartCoroutine(BlackScreenFadeIn(0.05f));
+        yield return new WaitForSeconds(0.5f);
+
+        //Reset camera
+        SetActiveVirtualCamera(3);
+
+
+        // WaitForCamToSet
+        yield return new WaitForSeconds(2.0f);
+
+
+        // Hide UI
+        HideAllUI();
+
+
+        StartCoroutine(BlackScreenFadeOut(0.05f));
+        yield return new WaitForSeconds(0.5f);
+
+
+        // WaitFewSecondsAndShootPhoto
+        yield return new WaitForSeconds(3.0f);
+        StartCoroutine(TakePhotoFlashingEffect(2));
+        yield return new WaitForSeconds(3.3f);
+
+
+        // Text appears
+        storyUI.SetActive(true);
+        storyText.text = "Great! I bet no one would expect this photo!";
+
+        yield return new WaitForSeconds(3.0f);
+        StartCoroutine(BlackScreenFadeIn(0.05f));
+    }
+
+
+
+    IEnumerator StayAndListenDialog()
+    {
+        //Bring up the black screen
+        StartCoroutine(BlackScreenFadeIn(0.05f));
+        yield return new WaitForSeconds(0.5f);
+        storyUI.SetActive(false);
+
+        dialogBackground.SetActive(true);
+
+
+        StartCoroutine(BlackScreenFadeOut(0.005f));
+        yield return new WaitForSeconds(0.05f);
+        
+
+        yield return new WaitForSeconds(1.0f);
+
+
+        // Bring up some noise/sound here
+        storyText.text = "......";
+        storyUI.SetActive(true);
+
+        // the length of it is according to the sound length
+        yield return new WaitForSeconds(2.0f);
+
+
+        // Prepare to get out of the black scene
+        storyUI.SetActive(false);
+        StartCoroutine(BlackScreenFadeIn(0.005f));
+        yield return new WaitForSeconds(0.05f);
+        dialogBackground.SetActive(false);
+        workers.SetActive(false);
+        StartCoroutine(BlackScreenFadeOut(0.05f));
+        yield return new WaitForSeconds(0.5f);
+
+
+
+
+        // Dialog after the press conference
+        yield return new WaitForSeconds(1.0f);
+        storyText.text = "That is a pretty plain conference.";
+        storyUI.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        storyText.text = "Will the boss be happy about this?";
+        yield return new WaitForSeconds(2.0f);
+        storyText.text = "Maybe I should try harder?";
+        yield return new WaitForSeconds(2.0f);
+        optionUIBox1Text.text = "Leaving";
+        optionUIBox2Text.text = "Sneaking";
+        storyUI.SetActive(false);
+        optionUI.SetActive(true);
+        statusUI.SetActive(true);
+        _currState = StoryState.SecondChoice;
+    }
+
+  
+
 
     private void GenerateStoryBlock1()
     {
@@ -160,10 +290,13 @@ public class Scene2Controller : MonoBehaviour
 
         // Text appears
         storyUI.SetActive(true);
-        storyText.text = "Great! I bet no one would expect this!";
+        storyText.text = "Great! I bet no one would expect this photo!";
 
         yield return new WaitForSeconds(3.0f);
         StartCoroutine(BlackScreenFadeIn(0.05f));
+
+
+        // Go Next Scene maybe?
     }
 
 
@@ -204,7 +337,8 @@ public class Scene2Controller : MonoBehaviour
 
     IEnumerator TakePhotoFlashingEffect(int index)
     {
-        if(index == 1) {
+        if(index == 1) 
+        {
             flashLight.GetComponent<Light>().intensity = 10;
             yield return new WaitForSeconds(0.7f);
             for(int i=0; i<5; i++)
@@ -215,6 +349,19 @@ public class Scene2Controller : MonoBehaviour
                 yield return new WaitForSeconds(0.05f);
             }
             flashLight.GetComponent<Light>().intensity = 0;
+        }
+        else if(index == 2)
+        {
+            flashLight2.GetComponent<Light>().intensity = 10;
+            yield return new WaitForSeconds(0.7f);
+            for (int i = 0; i < 5; i++)
+            {
+                flashLight2.GetComponent<Light>().intensity = 0;
+                yield return new WaitForSeconds(0.05f);
+                flashLight2.GetComponent<Light>().intensity = 100;
+                yield return new WaitForSeconds(0.05f);
+            }
+            flashLight2.GetComponent<Light>().intensity = 0;
         }
     }
 

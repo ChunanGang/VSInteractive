@@ -35,6 +35,10 @@ public class Scene2StoryBranch : MonoBehaviour
         {
             _scene2Controller.SetStoryState(StoryState.SneakingInEarly);
         }
+        else if(_scene2Controller.GetStoryState() == StoryState.SecondChoice)
+        {
+            _scene2Controller.SetStoryState(StoryState.Stay);
+        }
     }
 
     public void Option1()
@@ -42,6 +46,15 @@ public class Scene2StoryBranch : MonoBehaviour
         //animator.SetBool("isWalking", true);
         Debug.Log("isWalking");
         Debug.Log(animator.GetBool("isWalking"));
+
+        if (_scene2Controller.GetStoryState() == StoryState.FirstChoice)
+        {
+            _scene2Controller.SetStoryState(StoryState.NotSneakingEarly);
+        }
+        else if(_scene2Controller.GetStoryState() == StoryState.SecondChoice)
+        {
+            _scene2Controller.SetStoryState(StoryState.NotStay);
+        }
     }
 
 
