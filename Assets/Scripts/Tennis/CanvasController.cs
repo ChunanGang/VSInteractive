@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class CanvasController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class CanvasController : MonoBehaviour
     // timeline
     public PlayableDirector startingTimeline;
     public PlayableDirector decision1_2;
+    public PlayableDirector endingTimeline;
 
     private void Start()
     {
@@ -52,7 +54,7 @@ public class CanvasController : MonoBehaviour
         decision1_1Conversation.Add("\"Sorry Boss\"");
 
         decision1_2Conversation.Add("BOSS: \"OMG!\"");
-        decision1_2Conversation.Add("BOSS: \"That was a unbelievable serve.\"");
+        decision1_2Conversation.Add("BOSS: \"That was an unbelievable serve.\"");
         decision1_2Conversation.Add("BOSS: \"You won us the game.\"");
         decision1_2Conversation.Add("\"Thanks.\"");
         decision1_2Conversation.Add("\"May just be luck\"");
@@ -120,6 +122,7 @@ public class CanvasController : MonoBehaviour
                     nextLine = 0;
                     storyUI.SetActive(false);
 
+                    endingTimeline.Play();
                 }
                 break;
             // decision two
@@ -131,7 +134,7 @@ public class CanvasController : MonoBehaviour
                 {
                     nextLine = 0;
                     storyUI.SetActive(false);
-
+                    endingTimeline.Play();
                 }
                 break;
         }
@@ -154,7 +157,10 @@ public class CanvasController : MonoBehaviour
         // first choice
         if (state == 5)
         {
+            state += 1;
+            startingTimeline.Stop();
             decision1_2.Play();
+            optionUI.SetActive(false);
         }
     }
     public void triggerStartConversation()
@@ -184,5 +190,17 @@ public class CanvasController : MonoBehaviour
         startingTimeline.Pause();
         storyUI.SetActive(true);
         state +=1;
+    }
+
+    public void triggerDecision1_2Ending()
+    {
+        decision1_2.Pause();
+        storyUI.SetActive(true);
+        state = 8;
+    }
+
+    public void moveToNextScene()
+    {
+        SceneManager.LoadScene("TennisCourt2");
     }
 }
