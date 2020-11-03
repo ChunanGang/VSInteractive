@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShoppingScene.unity
     guid: 8007b08e19885f9438dbf25f5308f108
+  - enabled: 1
+    path: Assets/Scenes/TennisCourt.unity
+    guid: 966440bc31994b74d926b3b6ad93d0a1
+  - enabled: 1
+    path: Assets/Scenes/TennisCourt2.unity
+    guid: 7874ad48f5dd205409c4959092453e9f
   m_configObjects: {}
