@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 public enum StoryState
 {
+    WaitForPlayerInput,
+    FirstScene,
     FirstChoice,
     SneakingInEarly,
     TakingFirstAlienPhoto,
@@ -37,6 +40,9 @@ public class Scene2Controller : MonoBehaviour
     public GameObject MC;
 
 
+    [Header("FirstScene")]
+    public GameObject DirectorCam;
+
 
     [Header("SneakingStaff")]
     public GameObject flashLight;
@@ -50,17 +56,18 @@ public class Scene2Controller : MonoBehaviour
     private List<string> story = new List<string>();
 
     private StoryState _currState;
+    private int mouseEventIndex;
 
     private void Start()
     {
+        mouseEventIndex = 0;
         GenerateStoryBlock1();
         storyUI.SetActive(true);
         statusUI.SetActive(false);
         optionUI.SetActive(false);
         storyText.fontStyle = FontStyle.BoldAndItalic;
         storyText.text = story[nextLine++].ToString();
-        StartCoroutine(WaitForCamMoveAndPrintText(cameraMoveTime1));
-        _currState = StoryState.FirstChoice;
+        _currState = StoryState.WaitForPlayerInput;
 
     }
 
@@ -95,7 +102,7 @@ public class Scene2Controller : MonoBehaviour
                 _currState = StoryState.End;
 
 
-                // Go to Next Scene
+                //GONEXTSCENE
 
                 break;
 
@@ -103,6 +110,99 @@ public class Scene2Controller : MonoBehaviour
             case StoryState.Stay:
                 _currState = StoryState.End;
                 StartCoroutine(LastSceneToSeeAlien());
+                break;
+
+
+            case StoryState.WaitForPlayerInput:
+                if(Input.GetMouseButtonDown(0))
+                {
+
+                    // First sentence, WhiteHouse .....
+                    if(mouseEventIndex == 0)
+                    {
+                        mouseEventIndex++;
+                        _currState = StoryState.FirstScene;
+                        StartCoroutine(WaitForCamMoveAndPrintText(cameraMoveTime1));
+
+                    }
+
+                    // Second sentence, juciy news .....
+                    else if (mouseEventIndex == 1)
+                    {
+                        mouseEventIndex++;
+                        FirstMouseEvent();
+                    }
+
+                    // For early sneak in, Oh no the flashlight
+                    else if (mouseEventIndex == 2)
+                    {
+                        storyText.text = "I forgot to turn it off!";
+                        mouseEventIndex++;
+                    }
+
+                    // I forgot to turn it off
+                    else if (mouseEventIndex == 3)
+                    {
+                        storyText.text = "But anyway, I bet no one would expect this photo.";
+                        mouseEventIndex++;
+                    }
+
+                    // But this is a great photo
+                    else if (mouseEventIndex == 4)
+                    {
+                        StartCoroutine(BlackScreenFadeIn(0.05f));
+                        // GONEXTSCENE
+
+                    }
+
+                    // In the middle of the press the ...
+                    else if(mouseEventIndex == 50)
+                    {
+                        _currState = StoryState.DialogBeforeSecondChoice;
+                        StartCoroutine(StayAndListenDialog2());
+                    }
+
+                    // That is a pretty plain conference
+                    else if(mouseEventIndex == 51)
+                    {
+                        storyText.text = "Will the boss be happy about this?";
+                        mouseEventIndex++;
+                    }
+
+                    // Will the boss be happy about this
+                    else if(mouseEventIndex == 52)
+                    {
+                        storyText.text = "Maybe I should try harder?";
+                        mouseEventIndex++;
+                    }
+
+                    // Maybe I should try harder?
+                    else if(mouseEventIndex == 53)
+                    {
+                        optionUIBox1Text.text = "Leaving";
+                        optionUIBox2Text.text = "Sneaking";
+                        storyUI.SetActive(false);
+                        optionUI.SetActive(true);
+                        statusUI.SetActive(true);
+                        _currState = StoryState.SecondChoice;
+                    }
+
+
+                    // Oh man! No one would believe this
+                    else if(mouseEventIndex == 70)
+                    {
+                        storyText.text = "Boss would be happy about this!";
+                        mouseEventIndex++;
+                    }
+
+                    // Boss would be happy about this
+                    else if(mouseEventIndex == 71)
+                    {
+                        StartCoroutine(BlackScreenFadeIn(0.05f));
+                        // GONEXTSCENE
+                    }
+                }
+
                 break;
         }
             
@@ -140,10 +240,13 @@ public class Scene2Controller : MonoBehaviour
 
         // Text appears
         storyUI.SetActive(true);
-        storyText.text = "Great! I bet no one would expect this photo!";
+        storyText.text = "OH MAN! No one would believe this video!";
 
-        yield return new WaitForSeconds(3.0f);
-        StartCoroutine(BlackScreenFadeIn(0.05f));
+        mouseEventIndex = 70;
+        _currState = StoryState.WaitForPlayerInput;
+
+        //yield return new WaitForSeconds(3.0f);
+        //StartCoroutine(BlackScreenFadeIn(0.05f));
     }
 
 
@@ -160,7 +263,7 @@ public class Scene2Controller : MonoBehaviour
 
         StartCoroutine(BlackScreenFadeOut(0.005f));
         yield return new WaitForSeconds(0.05f);
-        
+
 
         yield return new WaitForSeconds(1.0f);
 
@@ -169,10 +272,13 @@ public class Scene2Controller : MonoBehaviour
         storyText.text = "......";
         storyUI.SetActive(true);
 
+        mouseEventIndex = 50;
+        _currState = StoryState.WaitForPlayerInput;
         // the length of it is according to the sound length
-        yield return new WaitForSeconds(2.0f);
+        //yield return new WaitForSeconds(2.0f);
+    }
 
-
+    IEnumerator StayAndListenDialog2() { 
         // Prepare to get out of the black scene
         storyUI.SetActive(false);
         StartCoroutine(BlackScreenFadeIn(0.005f));
@@ -189,17 +295,19 @@ public class Scene2Controller : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         storyText.text = "That is a pretty plain conference.";
         storyUI.SetActive(true);
+
+        mouseEventIndex = 51;
+        _currState = StoryState.WaitForPlayerInput;
+
+/*        yield return new WaitForSeconds(2.0f);
         yield return new WaitForSeconds(2.0f);
-        storyText.text = "Will the boss be happy about this?";
-        yield return new WaitForSeconds(2.0f);
-        storyText.text = "Maybe I should try harder?";
         yield return new WaitForSeconds(2.0f);
         optionUIBox1Text.text = "Leaving";
         optionUIBox2Text.text = "Sneaking";
         storyUI.SetActive(false);
         optionUI.SetActive(true);
         statusUI.SetActive(true);
-        _currState = StoryState.SecondChoice;
+        _currState = StoryState.SecondChoice;*/
     }
 
   
@@ -214,14 +322,25 @@ public class Scene2Controller : MonoBehaviour
 
     IEnumerator WaitForCamMoveAndPrintText(float cameraMoveTime)
     {
+        DirectorCam.GetComponent<PlayableDirector>().Play();
         yield return new WaitForSeconds(cameraMoveTime);
         storyText.fontStyle = FontStyle.Normal;
         storyText.text = story[nextLine++].ToString();
-        yield return new WaitForSeconds(autoNextLineTime);
+        //yield return new WaitForSeconds(autoNextLineTime);
+        SetActiveVirtualCamera(1);
+        _currState = StoryState.WaitForPlayerInput;
+
+    }
+
+
+    private void FirstMouseEvent()
+    {
         storyUI.SetActive(false);
         SetUpFirstChoice();
         optionUI.SetActive(true);
         statusUI.SetActive(true);
+        _currState = StoryState.FirstChoice;
+
     }
 
 
@@ -290,10 +409,12 @@ public class Scene2Controller : MonoBehaviour
 
         // Text appears
         storyUI.SetActive(true);
-        storyText.text = "Great! I bet no one would expect this photo!";
+        storyText.text = "Oh! No! The flashlight!";
 
-        yield return new WaitForSeconds(3.0f);
-        StartCoroutine(BlackScreenFadeIn(0.05f));
+        mouseEventIndex = 2;
+        _currState = StoryState.WaitForPlayerInput;
+/*        yield return new WaitForSeconds(3.0f);
+        StartCoroutine(BlackScreenFadeIn(0.05f));*/
 
 
         // Go Next Scene maybe?
