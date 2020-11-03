@@ -15,20 +15,29 @@ public enum StoryState
 public class Scene2Controller : MonoBehaviour
 {
 
-
+    [Header("UI")]
     public GameObject storyUI;
     public GameObject optionUI;
     public Text optionUIBox1Text;
     public Text optionUIBox2Text;
-    public GameObject statusUI;
-    public float cameraMoveTime1;
-    public float autoNextLineTime;
-    public Text storyText;
     public Slider suspicionSlider;
     public Slider productionSlider;
     public RawImage BlackScreen;
+    public Text storyText;
+    public GameObject statusUI;
+
+
+
+    [Header("Parameters")]
+    public float cameraMoveTime1;
+    public float autoNextLineTime;
     public GameObject[] CameraList;
     public GameObject MC;
+
+
+
+    [Header("SneakingStaff")]
+    public GameObject flashLight;
 
     private int nextLine = 0;
     private List<string> story = new List<string>();
@@ -142,6 +151,19 @@ public class Scene2Controller : MonoBehaviour
         StartCoroutine(BlackScreenFadeOut(0.05f));
         yield return new WaitForSeconds(0.5f);
 
+
+        // WaitFewSecondsAndShootPhoto
+        yield return new WaitForSeconds(3.0f);
+        StartCoroutine(TakePhotoFlashingEffect(1));
+        yield return new WaitForSeconds(3.3f);
+
+
+        // Text appears
+        storyUI.SetActive(true);
+        storyText.text = "Great! I bet no one would expect this!";
+
+        yield return new WaitForSeconds(3.0f);
+        StartCoroutine(BlackScreenFadeIn(0.05f));
     }
 
 
@@ -177,6 +199,23 @@ public class Scene2Controller : MonoBehaviour
         storyUI.SetActive(false);
         statusUI.SetActive(false);
         optionUI.SetActive(false);
+    }
+
+
+    IEnumerator TakePhotoFlashingEffect(int index)
+    {
+        if(index == 1) {
+            flashLight.GetComponent<Light>().intensity = 10;
+            yield return new WaitForSeconds(0.7f);
+            for(int i=0; i<5; i++)
+            {
+                flashLight.GetComponent<Light>().intensity = 0;
+                yield return new WaitForSeconds(0.05f);
+                flashLight.GetComponent<Light>().intensity = 20;
+                yield return new WaitForSeconds(0.05f);
+            }
+            flashLight.GetComponent<Light>().intensity = 0;
+        }
     }
 
 }
