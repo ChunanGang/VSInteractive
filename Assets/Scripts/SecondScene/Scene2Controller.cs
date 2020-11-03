@@ -2,9 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+public enum StoryState
+{
+    FirstChoice,
+    SneakingInEarly,
+    TakingFirstAlienPhoto,
+    NotSneakingEarly,
+    SecondChoice,
+    NotStay,
+    Stay
+}
 public class Scene2Controller : MonoBehaviour
 {
+
 
     public GameObject storyUI;
     public GameObject optionUI;
@@ -14,10 +24,16 @@ public class Scene2Controller : MonoBehaviour
     public float cameraMoveTime1;
     public float autoNextLineTime;
     public Text storyText;
+    public Slider suspicionSlider;
+    public Slider productionSlider;
+    public RawImage BlackScreen;
+    public GameObject[] CameraList;
+    public GameObject MC;
 
     private int nextLine = 0;
     private List<string> story = new List<string>();
 
+    private StoryState _currState;
 
     private void Start()
     {
@@ -28,28 +44,25 @@ public class Scene2Controller : MonoBehaviour
         storyText.fontStyle = FontStyle.BoldAndItalic;
         storyText.text = story[nextLine++].ToString();
         StartCoroutine(WaitForCamMoveAndPrintText(cameraMoveTime1));
+        _currState = StoryState.FirstChoice;
 
     }
 
     // Update is called once per frame
     void Update() 
     {
-        /*try
+        switch (_currState) 
         {
-            if (nextLine == 12)
-            {
-                storyUI.SetActive(false);
-                optionUI.SetActive(true);
-            }
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
-            {
-                storyText.text = story[nextLine].ToString();
-                nextLine += 1;
-            }
+            case StoryState.SneakingInEarly:
+                
+                //Set State Flag
+                _currState = StoryState.TakingFirstAlienPhoto;
+
+                StartCoroutine(SetupSneakingState());
+                break;
         }
-        catch
-        {
-        }*/
+            
+
 
     }
 
@@ -77,6 +90,93 @@ public class Scene2Controller : MonoBehaviour
     {
         optionUIBox1Text.text = "Staying";
         optionUIBox2Text.text = "Sneaking";
+    }
+
+
+
+    IEnumerator BlackScreenFadeIn(float FadeSpeed)
+    {
+        BlackScreen.color = new Color(0, 0, 0, 0);
+        BlackScreen.gameObject.SetActive(true);
+        for (int i = 0; i < 10; i++)
+        {
+            BlackScreen.color = new Color(0, 0, 0, BlackScreen.color.a + 0.1f);
+            yield return new WaitForSeconds(FadeSpeed);
+        }
+    }
+
+
+    IEnumerator BlackScreenFadeOut(float FadeSpeed)
+    {
+        BlackScreen.color = new Color(0, 0, 0, 1);
+        for (int i = 0; i < 10; i++)
+        {
+            BlackScreen.color = new Color(0, 0, 0, BlackScreen.color.a - 0.1f);
+            yield return new WaitForSeconds(FadeSpeed);
+        }
+        BlackScreen.gameObject.SetActive(false);
+    }
+
+
+    IEnumerator SetupSneakingState()
+    {
+
+        // Increase the bar here!
+
+
+        StartCoroutine(BlackScreenFadeIn(0.05f));
+        yield return new WaitForSeconds(0.5f);
+
+        //Reset camera
+        SetActiveVirtualCamera(2);
+
+
+        // WaitForCamToSet
+        yield return new WaitForSeconds(2.0f);
+
+
+        // Hide UI
+        HideAllUI();
+
+
+        StartCoroutine(BlackScreenFadeOut(0.05f));
+        yield return new WaitForSeconds(0.5f);
+
+    }
+
+
+    private void SetActiveVirtualCamera(int index)
+    {
+        for (int i = 0; i < CameraList.Length; i++)
+        {
+            if (i == index)
+            {
+                CameraList[i].SetActive(true);
+            }
+            else
+            {
+                CameraList[i].SetActive(false);
+            }
+        }
+    }
+
+
+    public StoryState GetStoryState()
+    {
+        return _currState;
+    }
+
+    public void SetStoryState(StoryState desiredState)
+    {
+        _currState = desiredState;
+    }
+
+
+    private void HideAllUI()
+    {
+        storyUI.SetActive(false);
+        statusUI.SetActive(false);
+        optionUI.SetActive(false);
     }
 
 }
