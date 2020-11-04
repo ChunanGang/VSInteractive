@@ -8,7 +8,11 @@ public class GameControllerTwo : MonoBehaviour
 {
     public GameObject storyUI;
     public GameObject optionUI;
+
     public Text storyText;
+    public Slider suspicionSlider;
+    public Slider productionSlider;
+    private ChangeBar _changeBar;
     private int state = 0;
     private int nextLine = 0;
     private List<string> startConversation = new List<string>();
@@ -22,6 +26,9 @@ public class GameControllerTwo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _changeBar = FindObjectOfType<ChangeBar>();
+        productionSlider.value = _changeBar.productionVal / 100;
+        suspicionSlider.value = _changeBar.suspicionVal / 100;
         storyUI.SetActive(false);
         //optionUI.SetActive(false);
         startConversation.Add("\"Oh no!\"");
@@ -103,6 +110,8 @@ public class GameControllerTwo : MonoBehaviour
             state += 1;
             optionUI.SetActive(false);
             startingTimeline.Play();
+            _changeBar.productionVal += 10;
+            productionSlider.value = _changeBar.productionVal / 100;
         }
     }
     public void chooseOptionTwo()
@@ -115,6 +124,10 @@ public class GameControllerTwo : MonoBehaviour
             startingTimeline.Stop();
             decision2_2.Play();
             optionUI.SetActive(false);
+            _changeBar.productionVal += 20;
+            _changeBar.suspicionVal += 20;
+            productionSlider.value = _changeBar.productionVal / 100;
+            suspicionSlider.value = _changeBar.suspicionVal / 100;
         }
     }
 

@@ -12,13 +12,20 @@ public class StoryBranch2 : MonoBehaviour
     public Text timeText;
     public Animator anim;
     public GameObject mindControlLight;
+    public Slider suspicionSlider;
+    public Slider productionSlider;
 
     public static int madeDecision = 0;
 
+
+    private ChangeBar _changeBar;
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        _changeBar = FindObjectOfType<ChangeBar>();
+        productionSlider.value = _changeBar.productionVal / 100;
+        suspicionSlider.value = _changeBar.suspicionVal / 100;
     }
 
     // Update is called once per frame
@@ -32,11 +39,17 @@ public class StoryBranch2 : MonoBehaviour
         blackScreen.enabled = true;
         timeText.enabled = true;
         StartCoroutine(FadeOut());
+        _changeBar.productionVal += 10;
+        productionSlider.value = _changeBar.productionVal / 100;
     }
 
     public void Option2()
     {
         StartCoroutine(MindControl());
+        _changeBar.productionVal += 20;
+        _changeBar.suspicionVal += 20;
+        productionSlider.value = _changeBar.productionVal / 100;
+        suspicionSlider.value = _changeBar.suspicionVal / 100;
     }
 
     IEnumerator MindControl()

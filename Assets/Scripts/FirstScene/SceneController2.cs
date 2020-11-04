@@ -74,7 +74,8 @@ public class SceneController2 : MonoBehaviour
                         }
                         if (nextLine2 == story2.Count - 1)
                         {
-                            // SceneManager.LoadScene(2);
+                        // SceneManager.LoadScene(2);
+                        SceneManager.LoadScene("Transition1TO2");
                         }
                 }
                     if (madeDecision == 2)
@@ -87,6 +88,7 @@ public class SceneController2 : MonoBehaviour
                     if (nextLine3 == story3.Count - 1)
                     {
                         // SceneManager.LoadScene(2);
+                        SceneManager.LoadScene("Transition1TO2");
                     }
                 }
 

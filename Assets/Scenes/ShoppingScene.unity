@@ -375,6 +375,8 @@ MonoBehaviour:
   timeText: {fileID: 635347973}
   anim: {fileID: 788787848}
   mindControlLight: {fileID: 2060999756}
+  suspicionSlider: {fileID: 18137932678209970}
+  productionSlider: {fileID: 18137934434928241}
 --- !u!1 &329336550
 GameObject:
   m_ObjectHideFlags: 0

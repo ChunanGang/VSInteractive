@@ -11,11 +11,16 @@ public class Scene2StoryBranch : MonoBehaviour
     public GameObject MC;
     Animator animator;
     private Scene2Controller _scene2Controller;
-
+    private ChangeBar _changeBar;
+    public Slider suspicionSlider;
+    public Slider productionSlider;
 
 
     private void Start()
     {
+        _changeBar = FindObjectOfType<ChangeBar>();
+        productionSlider.value = _changeBar.productionVal / 100;
+        suspicionSlider.value = _changeBar.suspicionVal / 100;
         _scene2Controller = FindObjectOfType<Scene2Controller>().GetComponent<Scene2Controller>();
         animator = MC.GetComponent<Animator>();
     }
@@ -34,10 +39,18 @@ public class Scene2StoryBranch : MonoBehaviour
         if (_scene2Controller.GetStoryState() == StoryState.FirstChoice)
         {
             _scene2Controller.SetStoryState(StoryState.SneakingInEarly);
+            _changeBar.productionVal += 20;
+            _changeBar.suspicionVal += 20;
+            suspicionSlider.value = _changeBar.suspicionVal / 100;
+            productionSlider.value = _changeBar.productionVal / 100;
         }
         else if(_scene2Controller.GetStoryState() == StoryState.SecondChoice)
         {
             _scene2Controller.SetStoryState(StoryState.Stay);
+            _changeBar.productionVal += 20;
+            _changeBar.suspicionVal += 20;
+            suspicionSlider.value = _changeBar.suspicionVal / 100;
+            productionSlider.value = _changeBar.productionVal / 100;
         }
     }
 
@@ -50,10 +63,12 @@ public class Scene2StoryBranch : MonoBehaviour
         if (_scene2Controller.GetStoryState() == StoryState.FirstChoice)
         {
             _scene2Controller.SetStoryState(StoryState.NotSneakingEarly);
+            _changeBar.productionVal += 10;
         }
         else if(_scene2Controller.GetStoryState() == StoryState.SecondChoice)
         {
             _scene2Controller.SetStoryState(StoryState.NotStay);
+            _changeBar.productionVal += 10;
         }
     }
 

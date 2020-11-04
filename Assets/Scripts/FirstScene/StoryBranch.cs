@@ -17,11 +17,12 @@ public class StoryBranch : MonoBehaviour
     private float suspicionBarIncrement = 0f;
     private bool walking;
     private bool running;
-
+    private ChangeBar _changeBar;
     private bool secondScene;
 
     private void Start()
     {
+        _changeBar = FindObjectOfType<ChangeBar>();
         animator = MC.GetComponent<Animator>();
         cc = MC.GetComponent<CharacterController>();
         // float susVal = GameObject.Find("singletonVal").GetComponent
@@ -42,6 +43,8 @@ public class StoryBranch : MonoBehaviour
             }
             suspicionSlider.value += (suspicionBarIncrement * Time.deltaTime);
             producionSlider.value += (producctionBarIncrement * Time.deltaTime);
+            _changeBar.suspicionVal = suspicionSlider.value * 100;
+            _changeBar.productionVal = producionSlider.value * 100;
         }
         else
         {
@@ -58,8 +61,8 @@ public class StoryBranch : MonoBehaviour
         animator.SetBool("isRunning", false);
         walking = true;
         running = false;
-        suspicionBarIncrement = 0.03f;
-        producctionBarIncrement = 0.03f;
+        suspicionBarIncrement = 0.003f;
+        producctionBarIncrement = 0.003f;
     }
 
     public void Option2()
@@ -68,8 +71,8 @@ public class StoryBranch : MonoBehaviour
         animator.SetBool("isWalking", false);
         running = true;
         walking = false;
-        suspicionBarIncrement = 0.18f;
-        producctionBarIncrement = 0.08f;
+        suspicionBarIncrement = 0.018f;
+        producctionBarIncrement = 0.008f;
     }
 
 

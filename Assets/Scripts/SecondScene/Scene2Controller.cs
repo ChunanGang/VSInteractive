@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public enum StoryState
 {
@@ -63,6 +64,7 @@ public class Scene2Controller : MonoBehaviour
     private StoryState _currState;
     private int mouseEventIndex;
 
+
     private void Start()
     {
         mouseEventIndex = 0;
@@ -108,6 +110,7 @@ public class Scene2Controller : MonoBehaviour
 
 
                 //GONEXTSCENE
+                SceneManager.LoadScene("Transition2TO3");
 
                 break;
 
@@ -162,9 +165,18 @@ public class Scene2Controller : MonoBehaviour
                     // But this is a great photo
                     else if (mouseEventIndex == 4)
                     {
-                        StartCoroutine(BlackScreenFadeIn(0.05f));
+                        //StartCoroutine(BlackScreenFadeIn(0.05f));
                         // GONEXTSCENE
+                        mouseEventIndex = 98;
 
+                    }
+
+                    else if(mouseEventIndex == 98)
+                    {
+                        sunLight.GetComponent<Light>().color = new Color(0.97f, 0.8f, 0.3f, 1.0f);
+                        sunLight.transform.rotation = new Quaternion(0.83256495f, -0.255243957f, -0.0428712703f, 0.489742935f);
+                        _currState = StoryState.DialogBeforeSecondChoice;
+                        StartCoroutine(StayAndListenDialog2());
                     }
 
                     // In the middle of the press the ...
@@ -215,6 +227,7 @@ public class Scene2Controller : MonoBehaviour
                     {
                         StartCoroutine(BlackScreenFadeIn(0.05f));
                         // GONEXTSCENE
+                        SceneManager.LoadScene("Transition2TO3");
                     }
                 }
 
@@ -406,7 +419,7 @@ public class Scene2Controller : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         //Reset camera
-        SetActiveVirtualCamera(2);
+        SetActiveVirtualCamera(2);                  
 
 
         // WaitForCamToSet
@@ -509,6 +522,19 @@ public class Scene2Controller : MonoBehaviour
             }
             flashLight2.GetComponent<Light>().intensity = 0;
         }
+    }
+
+
+    IEnumerator SneakingFirstToActualPress()
+    {
+        StartCoroutine(BlackScreenFadeIn(0.05f));
+        yield return new WaitForSeconds(0.5f);
+
+        //backgroundNoise.Stop();
+        sunLight.GetComponent<Light>().color = new Color(0.97f, 0.8f, 0.3f, 1.0f);
+        sunLight.transform.rotation = new Quaternion(0.83256495f, -0.255243957f, -0.0428712703f, 0.489742935f);
+        _currState = StoryState.DialogBeforeSecondChoice;
+        StartCoroutine(StayAndListenDialog2());
     }
 
 }
