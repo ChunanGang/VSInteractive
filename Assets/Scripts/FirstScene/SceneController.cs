@@ -21,22 +21,22 @@ public class SceneController : MonoBehaviour
 
     private void Start()
     {
-        story1.Add("Man I forgot to set up an alarm last night");
-        story1.Add("Now I am going to be late for work");
-        story1.Add("Boss gonna be mad");
-        story1.Add("plus boss is not happy with my work long time ago");
-        story1.Add("I really need to get to work on time");
-        story1.Add("which road should I pick");
-        story1.Add("Instructions:");
-        story1.Add("'Left bar is your production bar'");
-        story1.Add("'You want it to be higher so boss wont fire you'");
-        story1.Add("'Right bar is your suspicion bar'");
-        story1.Add("'You want to keep it low so others wont find your super power'");
+        story1.Add("Man, I forgot to set my alarm last night.");
+        story1.Add("I'm going to be late for work!");
+        story1.Add("My boss is going to kill me...");
+        story1.Add("I've really been slacking lately.");
+        story1.Add("I need to get there on time to impress him.");
+        story1.Add("I wonder if I could use my super speed...");
+        story1.Add("--==Instructions==--");
+        story1.Add("Look in the top left. That left bar is your productivity.");
+        story1.Add("The higher it is, the better a job you're doing. Try to keep it high.");
+        story1.Add("The left bar is your suspicion.");
+        story1.Add("The higher it is, the more aware people are of your powers. Try to keep it low.");
         story1.Add("");
         story1.Add("");
         story1.Add("");
-        story1.Add("Oh shoot nearly forget to buy the gift boss asked yesterday. Need to buy it now.");
-        story1.Add("I am running out of time... ");
+        story1.Add("You know, I should really stop and buy my boss a gift to make up for slacking off.");
+        story1.Add("Gotta be quick...");
 
     }
 

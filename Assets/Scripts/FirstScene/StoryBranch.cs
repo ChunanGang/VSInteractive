@@ -26,6 +26,10 @@ public class StoryBranch : MonoBehaviour
         animator = MC.GetComponent<Animator>();
         cc = MC.GetComponent<CharacterController>();
         // float susVal = GameObject.Find("singletonVal").GetComponent
+
+        suspicionSlider.value = 0;
+        producionSlider.value = 0.2f;
+
     }
 
     private void Update()
@@ -61,8 +65,8 @@ public class StoryBranch : MonoBehaviour
         animator.SetBool("isRunning", false);
         walking = true;
         running = false;
-        suspicionBarIncrement = 0.003f;
-        producctionBarIncrement = 0.003f;
+        suspicionBarIncrement = -0.005f;
+        producctionBarIncrement = -0.005f;
     }
 
     public void Option2()

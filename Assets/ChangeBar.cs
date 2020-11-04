@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ChangeBar : MonoBehaviour
 {
-    public float suspicionVal;
-    public float productionVal;
+    public float suspicionVal = 0;
+    public float productionVal = 0.5f;
 
     // Start is called before the first frame update
     void Start()

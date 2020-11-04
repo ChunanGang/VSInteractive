@@ -33,8 +33,8 @@ public class Scene2StoryBranch : MonoBehaviour
     public void Option2()
     {
         //animator.SetBool("isRunning", true);
-        Debug.Log("isRunning");
-        Debug.Log(animator.GetBool("isRunning"));
+        //Debug.Log("isRunning");
+        //Debug.Log(animator.GetBool("isRunning"));
 
         if (_scene2Controller.GetStoryState() == StoryState.FirstChoice)
         {
@@ -57,8 +57,8 @@ public class Scene2StoryBranch : MonoBehaviour
     public void Option1()
     {
         //animator.SetBool("isWalking", true);
-        Debug.Log("isWalking");
-        Debug.Log(animator.GetBool("isWalking"));
+        //Debug.Log("isWalking");
+        //Debug.Log(animator.GetBool("isWalking"));
 
         if (_scene2Controller.GetStoryState() == StoryState.FirstChoice)
         {

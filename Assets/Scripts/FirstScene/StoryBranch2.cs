@@ -10,7 +10,7 @@ public class StoryBranch2 : MonoBehaviour
     public Transform MC;
     public Image blackScreen;
     public Text timeText;
-    public Animator anim;
+    public Animator[] anims;
     public GameObject mindControlLight;
     public Slider suspicionSlider;
     public Slider productionSlider;
@@ -39,15 +39,15 @@ public class StoryBranch2 : MonoBehaviour
         blackScreen.enabled = true;
         timeText.enabled = true;
         StartCoroutine(FadeOut());
-        _changeBar.productionVal += 15;
+        _changeBar.productionVal += 5;
         productionSlider.value = _changeBar.productionVal / 100;
     }
 
     public void Option2()
     {
         StartCoroutine(MindControl());
-        _changeBar.productionVal += 25;
-        _changeBar.suspicionVal += 30;
+        _changeBar.productionVal += 15;
+        _changeBar.suspicionVal += 10;
         productionSlider.value = _changeBar.productionVal / 100;
         suspicionSlider.value = _changeBar.suspicionVal / 100;
     }
@@ -56,7 +56,10 @@ public class StoryBranch2 : MonoBehaviour
     {
         mindControlLight.SetActive(true);
         yield return new WaitForSeconds(1f);
-        anim.SetTrigger("mindControl");
+        foreach (Animator anim in anims)
+        {
+            anim.SetTrigger("mindControl");
+        }
         madeDecision = 2;
     }
 

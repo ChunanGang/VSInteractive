@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class GameControllerTwo : MonoBehaviour
 {
@@ -31,27 +32,27 @@ public class GameControllerTwo : MonoBehaviour
         suspicionSlider.value = _changeBar.suspicionVal / 100;
         storyUI.SetActive(false);
         //optionUI.SetActive(false);
-        startConversation.Add("\"Oh no!\"");
-        startConversation.Add("\"That's my bottle on the floor.\"");
-        startConversation.Add("\"Boss is gonna trip and get mad.\"");
-        startConversation.Add("\"Should I use my super speed?\"");
-        startConversation.Add("\"So that I can go catch him.\"");
+        startConversation.Add("Oh no!");
+        startConversation.Add("That's my bottle on the floor.");
+        startConversation.Add("If my boss trips on that, he'll definitely blame me for it.");
+        startConversation.Add("Should I use my powers?");
+        startConversation.Add("My super speed will help me catch him.");
 
-        decision2_1Conversation.Add("BOSS: \"!!!\"");
-        decision2_1Conversation.Add("BOSS: \"Who left his damn bottle ?!\"");
-        decision2_1Conversation.Add("\"...\"");
-        decision2_1Conversation.Add("\"Sorry Boss that's mine.\"");
-        decision2_1Conversation.Add("BOSS: \"OMG\"");
-        decision2_1Conversation.Add("BOSS: \"What is wrong with you!\"");
+        decision2_1Conversation.Add("BOSS: Whoa!");
+        decision2_1Conversation.Add("BOSS: Ugh... Who left that bottle there?");
+        decision2_1Conversation.Add("...");
+        decision2_1Conversation.Add("Sorry Boss, that's mine...");
+        decision2_1Conversation.Add("BOSS: I can't believe you'd try to hurt me like that!");
+        decision2_1Conversation.Add("BOSS: This is going to show on your employee review.");
 
-        decision2_2Conversation.Add("\"Careful!\"");
-        decision2_2Conversation.Add("\"Sorry I left my bottle on the floor.\"");
-        decision2_2Conversation.Add("BOSS: \"Oh.\"");
-        decision2_2Conversation.Add("BOSS: \"Thank you!\"");
-        decision2_2Conversation.Add("BOSS: \"You saved me haha.\"");
-        decision2_2Conversation.Add("BOSS: \"But how did you come so fast?\"");
-        decision2_2Conversation.Add("\"um...\"");
-        decision2_2Conversation.Add("\"It must be you illusion..\"");
+        decision2_2Conversation.Add("Careful, Boss!");
+        decision2_2Conversation.Add("Sorry, I left my bottle on the floor.");
+        decision2_2Conversation.Add("BOSS: Oh.");
+        decision2_2Conversation.Add("BOSS: Thank you!");
+        decision2_2Conversation.Add("BOSS: You saved me haha.");
+        decision2_2Conversation.Add("BOSS: But how did you get here so fast?");
+        decision2_2Conversation.Add("Oh, you must not have noticed me.");
+        decision2_2Conversation.Add("I was right behind you the whole time.");
     }
 
     // Update is called once per frame
@@ -148,5 +149,24 @@ public class GameControllerTwo : MonoBehaviour
     public void end()
     {
         print("end---");
+        StartCoroutine(GoToFinalScene());
+    }
+
+    IEnumerator GoToFinalScene() 
+    {
+        yield return new WaitForSeconds(3);
+
+        if (_changeBar.suspicionVal >= 100)
+        {
+            SceneManager.LoadScene("EndingRevealed");
+        }
+        else if (_changeBar.productionVal < 100)
+        {
+            SceneManager.LoadScene("EndingFailed");
+        }
+        else
+        {
+            SceneManager.LoadScene("EndingSuccess");
+        }
     }
 }

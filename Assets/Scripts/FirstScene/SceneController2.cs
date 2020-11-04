@@ -22,21 +22,21 @@ public class SceneController2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        story.Add("This is a long line");
-        story.Add("I cannot imagine this 'Visual Story' book is so popular");
-        story.Add("I am 100% late for work if I wait in line");
-        story.Add("I can certainly mind control these folks to walk away");
-        story.Add("But that's a dangerous move");
-        story.Add("what should I do?");
+        story.Add("This is a long line...");
+        story.Add("This \"Visual Story\" book must be really good.");
+        story.Add("I can't afford to wait in this line.");
+        story.Add("Hm, I think I can control their minds to make them walk away.");
+        story.Add("But that might be a dangerous move.");
+        story.Add("What to do...");
         // Debug.Log(story.Count);
-        story2.Add("I am so late for work");
-        story2.Add("Boss would be so mad");
-        story2.Add("But hey at least I kept my bottom line");
-        story2.Add("better go back now");
+        story2.Add("I am so late for work...");
+        story2.Add("My boss is gonna be pretty mad.");
+        story2.Add("But hey, at least I've got this book to make it up to him.");
+        story2.Add("Better head there now.");
 
-        story3.Add("Oh this is convenient");
-        story3.Add("This way I should be able to make to work on time");
-        story3.Add("Hope nobody saw me do this to them");
+        story3.Add("Just as planned.");
+        story3.Add("Now, I should be able to get to work on time.");
+        story3.Add("Hope no one saw that...");
     }
 
     // Update is called once per frame

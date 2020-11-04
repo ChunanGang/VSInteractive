@@ -32,37 +32,37 @@ public class CanvasController : MonoBehaviour
         suspicionSlider.value = _changeBar.suspicionVal / 100;
         storyUI.SetActive(false);
         //optionUI.SetActive(false);
-        startConversation.Add("BOSS: \"Man let's beat them!\"");
-        startConversation.Add("\"...\"" );
-        startConversation.Add("\"OK I will try my best!\"");
-        startConversation.Add("BOSS: \"You better don't disappoint me.\"");
+        startConversation.Add("BOSS: Let's do this!");
+        startConversation.Add("Alright!" );
+        startConversation.Add("I'll try my best!");
+        startConversation.Add("BOSS: Don't disappoint me!");
 
-        gamePointConversation.Add("BOSS: \"Ok it's game point now!\"");
-        gamePointConversation.Add("BOSS: \"One more to go.\"");
-        gamePointConversation.Add("BOSS: \"We can win this !\"");
-        gamePointConversation.Add("\"Umm.. Should I use my power to win this?\"");
-        gamePointConversation.Add("BOSS: \"What were you mumbling ?\"");
-        gamePointConversation.Add("\"Nothing. Let's get it.\"");
+        gamePointConversation.Add("BOSS: Alright, match point!");
+        gamePointConversation.Add("BOSS: Just one more to go.");
+        gamePointConversation.Add("BOSS: We can win this!");
+        gamePointConversation.Add("Should I use my powers to win this?");
+        gamePointConversation.Add("BOSS: What are you mumbling?");
+        gamePointConversation.Add("Oh, nothing. Let's get it.");
 
-        firstDecision.Add("\"If I use my power here,\"");
-        firstDecision.Add("\"I can change the ball's direction\"");
-        firstDecision.Add("\"and win this game.\"");
-        firstDecision.Add("\"Boss will like me,\"");
-        firstDecision.Add("\"even give me promotion!\"");
-        firstDecision.Add("\"But someone may notice I did something.\"");
-        firstDecision.Add("\"Should I use my power?\"");
+        firstDecision.Add("If I use my telekinesis here,");
+        firstDecision.Add("I can change the ball's direction");
+        firstDecision.Add("and win this game.");
+        firstDecision.Add("My Boss will be so impressed,");
+        firstDecision.Add("maybe he'll even give me a promotion!");
+        firstDecision.Add("But the other team might notice something's wrong...");
+        firstDecision.Add("Should I use my power?");
 
-        decision1_1Conversation.Add("BOSS: \"OMG!\"");
-        decision1_1Conversation.Add("BOSS: \"Can't believe we lost this.\"");
-        decision1_1Conversation.Add("BOSS: \"You really disappoint me.\"");
-        decision1_1Conversation.Add("\"...\"");
-        decision1_1Conversation.Add("\"Sorry Boss\"");
+        decision1_1Conversation.Add("BOSS: Ugh!!");
+        decision1_1Conversation.Add("BOSS: I can't believe we lost this.");
+        decision1_1Conversation.Add("BOSS: You really blew it.");
+        decision1_1Conversation.Add("...");
+        decision1_1Conversation.Add("Sorry, Boss");
 
-        decision1_2Conversation.Add("BOSS: \"OMG!\"");
-        decision1_2Conversation.Add("BOSS: \"That was an unbelievable serve.\"");
-        decision1_2Conversation.Add("BOSS: \"You won us the game.\"");
-        decision1_2Conversation.Add("\"Thanks.\"");
-        decision1_2Conversation.Add("\"May just be luck\"");
+        decision1_2Conversation.Add("BOSS: Wow!");
+        decision1_2Conversation.Add("BOSS: That was an unbelievable serve.");
+        decision1_2Conversation.Add("BOSS: You won us the game!");
+        decision1_2Conversation.Add("Thanks!");
+        decision1_2Conversation.Add("Maybe I just got lucky?");
     }
 
     // Update is called once per frame

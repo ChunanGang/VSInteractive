@@ -6,17 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/IntroScene.unity
+    guid: fa4fb1a3a82eecb46b579fdb9cabe16c
+  - enabled: 1
     path: Assets/Scenes/CityStreet.unity
     guid: 79f8bac4c75da6e43bd8288f7d84106c
   - enabled: 1
     path: Assets/Scenes/ShoppingScene.unity
     guid: 8007b08e19885f9438dbf25f5308f108
   - enabled: 1
-    path: Assets/Scenes/Transition1TO2.unity
-    guid: 30a515ab8881530428aeb5897d2d26e3
-  - enabled: 1
     path: Assets/Scenes/Scene2.unity
     guid: bb15cd641a7a34d4994cefc6e238c2a9
+  - enabled: 1
+    path: Assets/Scenes/Transition1TO2.unity
+    guid: f8f18790c85261a448e98395919d701e
   - enabled: 1
     path: Assets/Scenes/Transition2TO3.unity
     guid: 6574cc8d18917e547b23cf243ff4fe4a
@@ -26,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TennisCourt2.unity
     guid: 7874ad48f5dd205409c4959092453e9f
+  - enabled: 1
+    path: Assets/Scenes/EndingSuccess.unity
+    guid: 30a515ab8881530428aeb5897d2d26e3
+  - enabled: 1
+    path: Assets/Scenes/EndingFailed.unity
+    guid: b8c1f7ae6ee467b489eb8e9049755bba
+  - enabled: 1
+    path: Assets/Scenes/EndingRevealed.unity
+    guid: bf88df199c7e76d469742f79cea776a7
   m_configObjects: {}

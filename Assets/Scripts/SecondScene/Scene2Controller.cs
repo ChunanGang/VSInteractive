@@ -144,21 +144,21 @@ public class Scene2Controller : MonoBehaviour
                     // For early sneak in, Oh no the flashlight
                     else if (mouseEventIndex == 2)
                     {
-                        storyText.text = "I forgot to turn it off!";
+                        storyText.text = "I forgot to shut it off!";
                         mouseEventIndex++;
                     }
 
                     // I forgot to turn it off
                     else if (mouseEventIndex == 3)
                     {
-                        storyText.text = "But anyway, Mr. President is talking to an alien.";
+                        storyText.text = "At least I still got the scoop.";
                         mouseEventIndex = 99;
                     }
 
                     // President talks to an Alien
                     else if(mouseEventIndex == 99)
                     {
-                        storyText.text = "I bet no one would expect this photo!";
+                        storyText.text = "The president's visitor is an alien? My boss is going to love this!";
                         mouseEventIndex = 4;
                     }
 
@@ -184,22 +184,22 @@ public class Scene2Controller : MonoBehaviour
                     // That is a pretty plain conference
                     else if(mouseEventIndex == 51)
                     {
-                        storyText.text = "Will the boss be happy about this?";
+                        storyText.text = "Will this impress my boss?";
                         mouseEventIndex++;
                     }
 
                     // Will the boss be happy about this
                     else if(mouseEventIndex == 52)
                     {
-                        storyText.text = "Maybe I should try harder?";
+                        storyText.text = "Maybe I should try for something more interesting.";
                         mouseEventIndex++;
                     }
 
                     // Maybe I should try harder?
                     else if(mouseEventIndex == 53)
                     {
-                        optionUIBox1Text.text = "Leaving";
-                        optionUIBox2Text.text = "Sneaking";
+                        optionUIBox1Text.text = "Leave";
+                        optionUIBox2Text.text = "Go Invisible";
                         storyUI.SetActive(false);
                         optionUI.SetActive(true);
                         statusUI.SetActive(true);
@@ -210,7 +210,7 @@ public class Scene2Controller : MonoBehaviour
                     // Oh man! No one would believe this
                     else if(mouseEventIndex == 70)
                     {
-                        storyText.text = "Boss would be happy about this!";
+                        storyText.text = "What a great shot to impress my boss!";
                         mouseEventIndex++;
                     }
 
@@ -264,7 +264,7 @@ public class Scene2Controller : MonoBehaviour
 
         // Text appears
         storyUI.SetActive(true);
-        storyText.text = "OH MAN! No one would believe this video!";
+        storyText.text = "Oh, man! My boss is not gonna believe this! A real spaceship!";
 
         mouseEventIndex = 70;
         _currState = StoryState.WaitForPlayerInput;
@@ -318,7 +318,7 @@ public class Scene2Controller : MonoBehaviour
 
         // Dialog after the press conference
         yield return new WaitForSeconds(1.0f);
-        storyText.text = "That is a pretty plain conference.";
+        storyText.text = "That was a pretty boring conference.";
         storyUI.SetActive(true);
 
         mouseEventIndex = 51;
@@ -340,7 +340,7 @@ public class Scene2Controller : MonoBehaviour
 
     private void GenerateStoryBlock1()
     {
-        story.Add("White House. Before press conference.");
+        story.Add("-=[White House, Before Press Conference]=-");
         story.Add("There must be some juicy news somewhere.");
     }
 
@@ -371,8 +371,8 @@ public class Scene2Controller : MonoBehaviour
 
     private void SetUpFirstChoice()
     {
-        optionUIBox1Text.text = "Staying";
-        optionUIBox2Text.text = "Sneaking";
+        optionUIBox1Text.text = "Attend Conference";
+        optionUIBox2Text.text = "Go Invisible";
     }
 
 
@@ -439,7 +439,7 @@ public class Scene2Controller : MonoBehaviour
 
         // Text appears
         storyUI.SetActive(true);
-        storyText.text = "Oh! No! The flashlight!";
+        storyText.text = "Oh, shoot. The flash!";
 
         mouseEventIndex = 2;
         _currState = StoryState.WaitForPlayerInput;
