@@ -47,10 +47,12 @@ public class Scene2Controller : MonoBehaviour
     [Header("SneakingStaff")]
     public GameObject flashLight;
     public GameObject flashLight2;
+    public GameObject alienBackyard;
 
     [Header("StayingDialog")]
     public GameObject dialogBackground;
     public GameObject workers;
+    public AudioSource backgroundNoise;
 
     private int nextLine = 0;
     private List<string> story = new List<string>();
@@ -158,6 +160,7 @@ public class Scene2Controller : MonoBehaviour
                     // In the middle of the press the ...
                     else if(mouseEventIndex == 50)
                     {
+                        backgroundNoise.Stop();
                         _currState = StoryState.DialogBeforeSecondChoice;
                         StartCoroutine(StayAndListenDialog2());
                     }
@@ -231,12 +234,16 @@ public class Scene2Controller : MonoBehaviour
         StartCoroutine(BlackScreenFadeOut(0.05f));
         yield return new WaitForSeconds(0.5f);
 
+        /*
+                // WaitFewSecondsAndShootPhoto
+                yield return new WaitForSeconds(3.0f);
+                StartCoroutine(TakePhotoFlashingEffect(2));
+                yield return new WaitForSeconds(3.3f);*/
 
-        // WaitFewSecondsAndShootPhoto
         yield return new WaitForSeconds(3.0f);
-        StartCoroutine(TakePhotoFlashingEffect(2));
-        yield return new WaitForSeconds(3.3f);
+        alienBackyard.GetComponent<Animator>().SetBool("startWalking", true);
 
+        yield return new WaitForSeconds(25.0f);
 
         // Text appears
         storyUI.SetActive(true);
@@ -271,6 +278,7 @@ public class Scene2Controller : MonoBehaviour
         // Bring up some noise/sound here
         storyText.text = "......";
         storyUI.SetActive(true);
+        backgroundNoise.Play();
 
         mouseEventIndex = 50;
         _currState = StoryState.WaitForPlayerInput;
