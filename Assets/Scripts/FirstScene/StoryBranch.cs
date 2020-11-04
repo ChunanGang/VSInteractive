@@ -24,6 +24,7 @@ public class StoryBranch : MonoBehaviour
     {
         animator = MC.GetComponent<Animator>();
         cc = MC.GetComponent<CharacterController>();
+        // float susVal = GameObject.Find("singletonVal").GetComponent
     }
 
     private void Update()
