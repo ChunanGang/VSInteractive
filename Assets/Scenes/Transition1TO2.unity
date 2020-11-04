@@ -374,6 +374,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8586040135862210252, guid: 2145e73df2427994a9032dbf97bd4403,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586040135862210252, guid: 2145e73df2427994a9032dbf97bd4403,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1386.9827
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586040135862210252, guid: 2145e73df2427994a9032dbf97bd4403,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -32.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586040135862210252, guid: 2145e73df2427994a9032dbf97bd4403,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 241.75208
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586040135862210253, guid: 2145e73df2427994a9032dbf97bd4403,
+        type: 3}
+      propertyPath: m_Text
+      value: After I go back to office, boss asks me to attend the press conference
+        in The White House
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586040135862210253, guid: 2145e73df2427994a9032dbf97bd4403,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8586040135982450097, guid: 2145e73df2427994a9032dbf97bd4403,
         type: 3}
       propertyPath: m_Name

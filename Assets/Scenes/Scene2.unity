@@ -10359,6 +10359,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ae8e77371fd8d6d4d94692037eb738de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 922e5b0408c8b7c499b0dbc3495fb6a4, type: 2}
     - target: {fileID: 919132149155446097, guid: ae8e77371fd8d6d4d94692037eb738de,
         type: 3}
       propertyPath: m_Name
@@ -13039,10 +13044,50 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3074495291292933425, guid: d042b5a6643bd3d4189734902ed9eb8e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.23000336
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074495291292933425, guid: d042b5a6643bd3d4189734902ed9eb8e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.029999733
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074495291292933425, guid: d042b5a6643bd3d4189734902ed9eb8e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -10.476044
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074495291292933425, guid: d042b5a6643bd3d4189734902ed9eb8e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.00001335144
+      objectReference: {fileID: 0}
     - target: {fileID: 3074495292015996205, guid: d042b5a6643bd3d4189734902ed9eb8e,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074495292408529284, guid: d042b5a6643bd3d4189734902ed9eb8e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.13999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074495292408529284, guid: d042b5a6643bd3d4189734902ed9eb8e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.03999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074495292408529284, guid: d042b5a6643bd3d4189734902ed9eb8e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -10.287033
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074495292408529284, guid: d042b5a6643bd3d4189734902ed9eb8e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.00001335144
       objectReference: {fileID: 0}
     - target: {fileID: 3074495292652138232, guid: d042b5a6643bd3d4189734902ed9eb8e,
         type: 3}
@@ -13332,6 +13377,11 @@ PrefabInstance:
       propertyPath: sunLight
       value: 
       objectReference: {fileID: 47070316}
+    - target: {fileID: 8631669088155498574, guid: b5288d2e59168714c8d474387d86a28d,
+        type: 3}
+      propertyPath: cameraMoveTime1
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8631669088155498575, guid: b5288d2e59168714c8d474387d86a28d,
         type: 3}
       propertyPath: m_Name

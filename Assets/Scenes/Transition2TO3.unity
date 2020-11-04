@@ -217,8 +217,7 @@ PrefabInstance:
     - target: {fileID: 8586040135862210253, guid: 2145e73df2427994a9032dbf97bd4403,
         type: 3}
       propertyPath: m_Text
-      value: After work, your boss asked you to attend a tennis competition with
-        him.
+      value: After work, my boss asks me to attend a tennis competition with him.
       objectReference: {fileID: 0}
     - target: {fileID: 8586040135862210253, guid: 2145e73df2427994a9032dbf97bd4403,
         type: 3}

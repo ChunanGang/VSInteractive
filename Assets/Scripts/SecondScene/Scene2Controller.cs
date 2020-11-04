@@ -167,23 +167,15 @@ public class Scene2Controller : MonoBehaviour
                     {
                         //StartCoroutine(BlackScreenFadeIn(0.05f));
                         // GONEXTSCENE
-                        mouseEventIndex = 98;
+                        _currState = StoryState.NotSneakingEarly;
 
-                    }
-
-                    else if(mouseEventIndex == 98)
-                    {
-                        sunLight.GetComponent<Light>().color = new Color(0.97f, 0.8f, 0.3f, 1.0f);
-                        sunLight.transform.rotation = new Quaternion(0.83256495f, -0.255243957f, -0.0428712703f, 0.489742935f);
-                        _currState = StoryState.DialogBeforeSecondChoice;
-                        StartCoroutine(StayAndListenDialog2());
                     }
 
                     // In the middle of the press the ...
                     else if(mouseEventIndex == 50)
                     {
                         backgroundNoise.Stop();
-                        sunLight.GetComponent<Light>().color = new Color(0.97f,0.8f,0.3f, 1.0f);
+                        //sunLight.GetComponent<Light>().color = new Color(0.97f,0.8f,0.3f, 1.0f);
                         sunLight.transform.rotation = new Quaternion(0.83256495f, -0.255243957f, -0.0428712703f, 0.489742935f);
                         _currState = StoryState.DialogBeforeSecondChoice;
                         StartCoroutine(StayAndListenDialog2());
@@ -291,7 +283,7 @@ public class Scene2Controller : MonoBehaviour
         storyUI.SetActive(false);
 
         dialogBackground.SetActive(true);
-
+        SetActiveVirtualCamera(1);
 
         StartCoroutine(BlackScreenFadeOut(0.005f));
         yield return new WaitForSeconds(0.05f);
@@ -355,12 +347,12 @@ public class Scene2Controller : MonoBehaviour
 
     IEnumerator WaitForCamMoveAndPrintText(float cameraMoveTime)
     {
-        DirectorCam.GetComponent<PlayableDirector>().Play();
+        SetActiveVirtualCamera(1);
+        //DirectorCam.GetComponent<PlayableDirector>().Play();
         yield return new WaitForSeconds(cameraMoveTime);
         storyText.fontStyle = FontStyle.Normal;
         storyText.text = story[nextLine++].ToString();
         //yield return new WaitForSeconds(autoNextLineTime);
-        SetActiveVirtualCamera(1);
         _currState = StoryState.WaitForPlayerInput;
 
     }
@@ -531,7 +523,7 @@ public class Scene2Controller : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         //backgroundNoise.Stop();
-        sunLight.GetComponent<Light>().color = new Color(0.97f, 0.8f, 0.3f, 1.0f);
+        //sunLight.GetComponent<Light>().color = new Color(0.97f, 0.8f, 0.3f, 1.0f);
         sunLight.transform.rotation = new Quaternion(0.83256495f, -0.255243957f, -0.0428712703f, 0.489742935f);
         _currState = StoryState.DialogBeforeSecondChoice;
         StartCoroutine(StayAndListenDialog2());
