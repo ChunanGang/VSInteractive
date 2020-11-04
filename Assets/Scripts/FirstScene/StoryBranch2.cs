@@ -39,15 +39,15 @@ public class StoryBranch2 : MonoBehaviour
         blackScreen.enabled = true;
         timeText.enabled = true;
         StartCoroutine(FadeOut());
-        _changeBar.productionVal += 10;
+        _changeBar.productionVal += 15;
         productionSlider.value = _changeBar.productionVal / 100;
     }
 
     public void Option2()
     {
         StartCoroutine(MindControl());
-        _changeBar.productionVal += 20;
-        _changeBar.suspicionVal += 20;
+        _changeBar.productionVal += 25;
+        _changeBar.suspicionVal += 30;
         productionSlider.value = _changeBar.productionVal / 100;
         suspicionSlider.value = _changeBar.suspicionVal / 100;
     }

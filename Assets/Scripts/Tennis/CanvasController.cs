@@ -154,7 +154,7 @@ public class CanvasController : MonoBehaviour
             state += 1;
             optionUI.SetActive(false);
             startingTimeline.Play();
-            _changeBar.productionVal += 10;
+            _changeBar.productionVal += 15;
             productionSlider.value = _changeBar.productionVal / 100;
         }
     }
@@ -168,8 +168,8 @@ public class CanvasController : MonoBehaviour
             startingTimeline.Stop();
             decision1_2.Play();
             optionUI.SetActive(false);
-            _changeBar.productionVal += 20;
-            _changeBar.suspicionVal += 20;
+            _changeBar.productionVal += 25;
+            _changeBar.suspicionVal += 30;
             productionSlider.value = _changeBar.productionVal / 100;
             suspicionSlider.value = _changeBar.suspicionVal / 100;
 
