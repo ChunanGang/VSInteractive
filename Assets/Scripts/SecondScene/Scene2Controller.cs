@@ -48,11 +48,14 @@ public class Scene2Controller : MonoBehaviour
     public GameObject flashLight;
     public GameObject flashLight2;
     public GameObject alienBackyard;
+    public GameObject presidentHimSelf;
+    public GameObject alienInRoom;
 
     [Header("StayingDialog")]
     public GameObject dialogBackground;
     public GameObject workers;
     public AudioSource backgroundNoise;
+    public GameObject sunLight;
 
     private int nextLine = 0;
     private List<string> story = new List<string>();
@@ -145,8 +148,15 @@ public class Scene2Controller : MonoBehaviour
                     // I forgot to turn it off
                     else if (mouseEventIndex == 3)
                     {
-                        storyText.text = "But anyway, I bet no one would expect this photo.";
-                        mouseEventIndex++;
+                        storyText.text = "But anyway, Mr. President is talking to an alien.";
+                        mouseEventIndex = 99;
+                    }
+
+                    // President talks to an Alien
+                    else if(mouseEventIndex == 99)
+                    {
+                        storyText.text = "I bet no one would expect this photo!";
+                        mouseEventIndex = 4;
                     }
 
                     // But this is a great photo
@@ -161,6 +171,8 @@ public class Scene2Controller : MonoBehaviour
                     else if(mouseEventIndex == 50)
                     {
                         backgroundNoise.Stop();
+                        sunLight.GetComponent<Light>().color = new Color(0.97f,0.8f,0.3f, 1.0f);
+                        sunLight.transform.rotation = new Quaternion(0.83256495f, -0.255243957f, -0.0428712703f, 0.489742935f);
                         _currState = StoryState.DialogBeforeSecondChoice;
                         StartCoroutine(StayAndListenDialog2());
                     }
@@ -243,7 +255,7 @@ public class Scene2Controller : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         alienBackyard.GetComponent<Animator>().SetBool("startWalking", true);
 
-        yield return new WaitForSeconds(25.0f);
+        yield return new WaitForSeconds(30.0f);
 
         // Text appears
         storyUI.SetActive(true);
@@ -414,6 +426,11 @@ public class Scene2Controller : MonoBehaviour
         StartCoroutine(TakePhotoFlashingEffect(1));
         yield return new WaitForSeconds(3.3f);
 
+        alienInRoom.GetComponent<Animator>().SetBool("isLooking", true);
+        presidentHimSelf.transform.rotation = Quaternion.Euler(new Vector3(0, 163.246f, 0));
+        presidentHimSelf.GetComponent<Animator>().SetBool("isLooking", true);
+
+        yield return new WaitForSeconds(1.0f);
 
         // Text appears
         storyUI.SetActive(true);

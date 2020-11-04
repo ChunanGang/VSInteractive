@@ -40,6 +40,8 @@ public class TeleportAndFly : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         teleportEffect.SetActive(false);
         yield return new WaitForSeconds(1.0f);
+        flyingShip.GetComponent<Animator>().SetBool("isUP", true);
+        yield return new WaitForSeconds(5.0f);
 
         for(int i=0; i<5; i++)
         {
